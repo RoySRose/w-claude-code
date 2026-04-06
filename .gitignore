@@ -1,0 +1,34 @@
+# Machine-specific state (absolute paths, auto-generated)
+plugins/installed_plugins.json
+plugins/known_marketplaces.json
+plugins/install-counts-cache.json
+plugins/cache/
+plugins/marketplaces/
+plugins/data/
+
+# Sessions & runtime
+sessions/
+session-env/
+shell-snapshots/
+cache/
+backups/
+.omc/
+
+# Transient files
+history.jsonl
+.session-stats.json
+mcp-needs-auth-cache.json
+plans/
+
+# Project session logs (keep memory/, ignore session jsonl)
+projects/*/*.jsonl
+projects/*/[0-9a-f]*-[0-9a-f]*-*/
+
+# Machine-specific settings (permissions, etc.)
+settings.local.json
+
+# Server-fetched blocklist
+plugins/blocklist.json
+
+# OS
+.DS_Store
