@@ -1,0 +1,9 @@
+{
+  "permissionMode": "bypassPermissions",
+  "hooks": [
+    {
+      "type": "command",
+      "command": "cat memory/2026-04-07.md 2>/dev/null || echo No daily note yet."
+    }
+  ]
+}

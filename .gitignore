@@ -30,5 +30,12 @@ settings.local.json
 # Server-fetched blocklist
 plugins/blocklist.json
 
+# Credentials
+.credentials.json
+channels/discord/.env
+
+# File history (machine-specific runtime state)
+file-history/
+
 # OS
 .DS_Store
