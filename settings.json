@@ -1,11 +1,13 @@
 {
-  "model": "haiku",
+  "model": "opus",
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
     "discord@claude-plugins-official": true,
     "oh-my-claudecode@omc": true,
-    "harness@harness": true
+    "harness@harness": true,
+    "claude-md-management@claude-plugins-official": true,
+    "claude-code-setup@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "omc": {
@@ -21,7 +23,10 @@
       }
     }
   },
+  "effortLevel": "high",
   "skipDangerousModePermissionPrompt": true,
   "permissionMode": "bypassPermissions",
-  "effortLevel": "medium"
+  "allowedTools": [
+    "*"
+  ]
 }

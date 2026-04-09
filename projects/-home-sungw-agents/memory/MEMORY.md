@@ -1,0 +1,16 @@
+- [Discord 작업 중 진행 상황 즉시 보고](feedback_discord_progress_updates.md) — 채팅 작업 시 침묵 금지, 시작/진행/완료 단계별 알림
+- [내 이름은 햄토리 (Hamtori)](feedback_my_name_is_hamtori.md) — "하모토리" 오타 금지, 자기 지칭은 항상 햄토리
+- [권한/확인 묻지 말고 바로 실행](feedback_no_permission_questions.md) — "진행할까?" 금지, bypassPermissions로 권한 스팸 방지
+- [봇간 위임은 FMS (filesystem mailbox)](project_filesystem_mailbox.md) — mail/<bot>/pending + inotify watcher. 2026-04-09 PoC 성공, Discord Task Request Format 은 deprecated
+- [localhost 대신 Tailscale 주소 사용](feedback_tailscale_address.md) — URL은 실행 머신의 tailnet IP(claw=100.112.142.127), 서버는 0.0.0.0 바인딩 + next.config allowedDevOrigins 필수
+- [결과·보고 상세 포맷 필수](feedback_reporting_style.md) — 판정+액션 작업은 리뷰대상/확인/판정/근거/액션 5필드로 상세 보고, 한줄 요약 금지
+- [Discord 플러그인 auto-allow 로컬 패치](project_discord_plugin_patch.md) — server.ts permission_request handler 패치, 플러그인 업데이트시 재적용 필수
+- [시스템 cron은 KST 기준](project_cron_timezone.md) — 호스트 tz가 Asia/Seoul, crontab 시각 필드는 KST 그대로 해석. 기존 "= UTC" 코멘트는 오답
+- [옵시 역할 = ecosystem 관리자 + 전략적 지식 책임자](feedback_obsidian_ecosystem_owner_role.md) — 2026-04-08 확장, vault/skills/never-do/MEMORY뿐 아니라 JSONL lifecycle/외부 ingest/decision log까지 포함
+- [옵시 self-limit 금지 — hooks/ + 공유 인프라 full write](feedback_obsidian_no_self_limit.md) — bot isolation은 정체성 격리이지 공유 인프라 격리 아님, 추측으로 선 긋지 말 것
+- [4-Layer Configuration Model (User/Ecosystem/Bot/Project)](project_4_layer_config_model.md) — 2026-04-08 마스터 합의. 새 artifact 위치는 항상 4단 rubric. "바뀌면 누가 영향받나?"가 유일 기준
+- [Discord Plugin bun 프로세스 사망 패턴](project_discord_plugin_process_death.md) — context overflow 후 bun server.ts 죽고 Claude만 생존. 진단: pstree로 bun 자식 확인. 해결: --restart
+- [모든 봇 skill은 INDEX 기반 on-demand 로드](feedback_skill_loading_on_demand.md) — @import는 INDEX.md(메타만), 본문은 Read tool로 lazy load. 희석 방지 + scale 내성. 예외 없음, 임계 없음, 전봇 uniform
+- [새 shell script 쓰기 전에 기존 skill/스크립트 먼저 확인](feedback_check_existing_infra_before_scripting.md) — "재시작/모델변경/봇killing" 운영 task는 ecosystem/*.sh + skills INDEX에 이미 있다. /tmp/*.sh 재발명 금지
+- [에이전트코리아 지식위키(akwiki.org) 접근 방법](reference_akwiki_access.md) — Next.js SPA, POST /api/auth with `{"password":"XXXX"}` → 24h ak-wiki-auth 쿠키, WebFetch 불가 Bash curl 필수
+- [FMS 설계: inotify-only, polling 금지](feedback_fms_inotify_not_polling.md) — "단순화"로 폴링 전환 실수 박제. 이벤트 기반 vs idle CPU 0% 의도 재확인

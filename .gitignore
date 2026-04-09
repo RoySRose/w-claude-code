@@ -24,6 +24,18 @@ plans/
 projects/*/*.jsonl
 projects/*/[0-9a-f]*-[0-9a-f]*-*/
 
+# Per-bot / per-project session state dirs (오직 -home-sungw-agents/memory/ 만 tracked)
+projects/-home-sungw-agents-*/
+projects/-home-sungw/
+
+# Runtime counter state (rules/ 하위 auto-updated, commit 금지)
+rules/counters.json
+rules/counters.json.lock
+
+# Transient cache / task state dirs
+paste-cache/
+tasks/
+
 # Machine-specific settings (permissions, etc.)
 settings.local.json
 
