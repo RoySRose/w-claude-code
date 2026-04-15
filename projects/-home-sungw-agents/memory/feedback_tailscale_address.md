@@ -2,15 +2,15 @@
 name: localhost 대신 Tailscale 주소 사용
 description: 개발 서버 URL 전달 시 localhost/127.0.0.1 대신 반드시 현재 머신의 Tailscale IP 사용
 type: feedback
+originSessionId: 8ea67e0a-aa12-4f8c-86d4-fe32d01e24f6
 ---
-
 사용자(성욱)에게 개발 서버나 로컬 호스팅 서비스 URL을 전달할 때 `localhost`/`127.0.0.1`이 아닌 **해당 서버가 실행 중인 머신의 Tailscale IP**를 사용한다. 서버 바인딩도 `0.0.0.0`으로 해야 외부에서 접근 가능.
 
 **Why:** 사용자는 MacBook(`100.98.222.23`) / Android(`100.125.156.12`) 등 다른 기기에서 Tailscale 메쉬를 통해 접근하므로 localhost는 도달 불가능.
 
 **Tailnet 구성:**
 - `100.112.142.127` = `claw` (Linux 개발 머신, 서버/에이전트가 여기서 실행됨)
-- `100.98.222.23` = `macbook-pro-3` (사용자 랩탑)
+- `100.98.222.23` = `macbook-pro-3` (사용자 랩탑, SSH username: `RoyKim`, repo 경로: `~/agents`, `~/.claude`)
 - `100.125.156.12` = `s24` (사용자 폰)
 
 **How to apply:**

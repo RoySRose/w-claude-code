@@ -1,0 +1,26 @@
+# Session: 2026-04-15
+**Date:** 2026-04-15
+**Started:** 20:11
+**Last Updated:** 20:14
+**Project:** agents
+**Branch:** master
+**Worktree:** /home/sungw/agents/thinker
+
+---
+<!-- ECC:SUMMARY:START -->
+## Session Summary
+
+### Tasks
+- mailbox-send 스킬과 vault-query 스킬이 보여? 둘 다 보이면 OK 라고만 답해. 하나라도 안 보이면 FAIL 이라고 답해. 다른 말 하지 마.
+
+### Stats
+- Total user messages: 1
+<!-- ECC:SUMMARY:END -->
+
+### Notes for Next Session
+-
+
+### Context to Load
+```
+[relevant files]
+```

@@ -1,0 +1,229 @@
+2026-04-15T02:18:13.845Z [DEBUG] MDM settings load completed in 1ms
+2026-04-15T02:18:13.863Z [DEBUG] Broken symlink or missing file encountered for settings.json at path: /home/sungw/agents/theo/.claude/settings.local.json
+2026-04-15T02:18:13.863Z [DEBUG] Broken symlink or missing file encountered for settings.json at path: /etc/claude-code/managed-settings.json
+2026-04-15T02:18:13.863Z [DEBUG] CA certs: Config fallback - globalEnv keys: , settingsEnv keys: none
+2026-04-15T02:18:13.864Z [DEBUG] [init] configureGlobalMTLS starting
+2026-04-15T02:18:13.864Z [DEBUG] [init] configureGlobalMTLS complete
+2026-04-15T02:18:13.864Z [DEBUG] [init] configureGlobalAgents starting
+2026-04-15T02:18:13.864Z [DEBUG] CA certs: useSystemCA=false, extraCertsPath=undefined
+2026-04-15T02:18:13.864Z [DEBUG] [init] configureGlobalAgents complete
+2026-04-15T02:18:13.865Z [DEBUG] Error log sink initialized
+2026-04-15T02:18:13.867Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-04-15T02:18:13.869Z [DEBUG] [ToolSearch:optimistic] mode=tst, ENABLE_TOOL_SEARCH=undefined, result=true
+2026-04-15T02:18:13.870Z [DEBUG] [STARTUP] Running setup()...
+2026-04-15T02:18:13.870Z [DEBUG] Loading skills from: managed=/etc/claude-code/.claude/skills, user=/home/sungw/.claude/skills, project=[/home/sungw/agents/theo/.claude/skills]
+2026-04-15T02:18:13.871Z [DEBUG] Error log sink initialized
+2026-04-15T02:18:13.872Z [DEBUG] [Claude in Chrome] Found chrome profiles: Default
+2026-04-15T02:18:13.873Z [DEBUG] Failed to stat directory /etc/claude-code/.claude/commands: ENOENT: no such file or directory, statx '/etc/claude-code/.claude/commands'
+2026-04-15T02:18:13.874Z [DEBUG] Failed to stat directory /home/sungw/.claude/commands: ENOENT: no such file or directory, statx '/home/sungw/.claude/commands'
+2026-04-15T02:18:13.874Z [DEBUG] Failed to stat directory /etc/claude-code/.claude/agents: ENOENT: no such file or directory, statx '/etc/claude-code/.claude/agents'
+2026-04-15T02:18:13.887Z [DEBUG] Cannot acquire lock for 2.1.97 - held by PID 2626507
+2026-04-15T02:18:13.887Z [ERROR] Error: Error: NON-FATAL: Lock acquisition failed for /home/sungw/.local/share/claude/versions/2.1.97 (expected in multi-process scenarios)
+    at gF$ (/$bunfs/root/src/entrypoints/cli.js:2772:2153)
+    at ba8 (/$bunfs/root/src/entrypoints/cli.js:2772:1233)
+    at processTicksAndRejections (native:7:39)
+2026-04-15T02:18:13.888Z [DEBUG] [STARTUP] setup() completed in 18ms
+2026-04-15T02:18:13.888Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-04-15T02:18:13.899Z [DEBUG] Loaded 8 installed plugins from /home/sungw/.claude/plugins/installed_plugins.json
+2026-04-15T02:18:13.900Z [DEBUG] Loaded 11 unique skills (11 unconditional, 0 conditional, managed: 0, user: 0, project: 11, additional: 0, legacy commands: 0)
+2026-04-15T02:18:13.900Z [DEBUG] Git remote URL: https://github.com/RoySRose/w-agent.git
+2026-04-15T02:18:13.900Z [DEBUG] Parsed repository: github.com/RoySRose/w-agent from URL: https://github.com/RoySRose/w-agent.git
+2026-04-15T02:18:13.909Z [DEBUG] [Claude in Chrome] Extension not found in any browser
+2026-04-15T02:18:13.911Z [DEBUG] Found 1 plugins (1 enabled, 0 disabled)
+2026-04-15T02:18:13.911Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-04-15T02:18:13.911Z [DEBUG] Checking plugin discord: skillsPath=exists, skillsPaths=0 paths
+2026-04-15T02:18:13.911Z [DEBUG] Attempting to load skills from plugin discord default skillsPath: /home/sungw/.claude/plugins/cache/claude-plugins-official/discord/0.0.4/skills
+2026-04-15T02:18:13.911Z [DEBUG] Registered 0 hooks from 1 plugins
+2026-04-15T02:18:13.911Z [DEBUG] Total plugin commands loaded: 0
+2026-04-15T02:18:13.911Z [DEBUG] Total plugin agents loaded: 0
+2026-04-15T02:18:13.912Z [DEBUG] Loaded 2 skills from plugin discord default directory
+2026-04-15T02:18:13.912Z [DEBUG] Total plugin skills loaded: 2
+2026-04-15T02:18:13.912Z [DEBUG] getSkills returning: 11 skill dir commands, 2 plugin skills, 9 bundled skills, 0 builtin plugin skills
+2026-04-15T02:18:13.913Z [DEBUG] [STARTUP] Commands and agents loaded in 25ms
+2026-04-15T02:18:13.914Z [DEBUG] [STARTUP] Running showSetupScreens()...
+2026-04-15T02:18:13.927Z [DEBUG] Cleared CA certificates cache
+2026-04-15T02:18:13.927Z [DEBUG] Cleared mTLS configuration cache
+2026-04-15T02:18:13.927Z [DEBUG] Cleared proxy agent cache
+2026-04-15T02:18:13.927Z [DEBUG] CA certs: useSystemCA=false, extraCertsPath=undefined
+2026-04-15T02:18:13.927Z [DEBUG] Grove: Using fresh cached config
+2026-04-15T02:18:13.929Z [DEBUG] [keybindings] KeybindingSetup initialized with 121 bindings, 0 warnings
+2026-04-15T02:18:13.934Z [DEBUG] Path /home/sungw/agents already tracked for repo roysrose/w-agent
+2026-04-15T02:18:13.934Z [DEBUG] [keybindings] Watching for changes to /home/sungw/.claude/keybindings.json
+2026-04-15T02:18:13.936Z [DEBUG] [Perfetto] initializePerfettoTracing called, env value: undefined
+2026-04-15T02:18:13.936Z [DEBUG] [3P telemetry] isTelemetryEnabled=false (CLAUDE_CODE_ENABLE_TELEMETRY=undefined)
+2026-04-15T02:18:13.943Z [DEBUG] XTVERSION: terminal identified as "tmux 3.4"
+2026-04-15T02:18:13.943Z [DEBUG] DECSTBM: gated (TMUX=set ZELLIJ=unset TERM_PROGRAM=tmux TERM=tmux-256color)
+2026-04-15T02:18:14.264Z [DEBUG] [STARTUP] showSetupScreens() completed in 350ms
+2026-04-15T02:18:14.264Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-04-15T02:18:14.264Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-04-15T02:18:14.264Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-04-15T02:18:14.264Z [DEBUG] Starting background startup prefetches
+2026-04-15T02:18:14.264Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-04-15T02:18:14.264Z [DEBUG] [API:auth] OAuth token check starting
+2026-04-15T02:18:14.264Z [DEBUG] [Bootstrap] Fetching
+2026-04-15T02:18:14.265Z [DEBUG] Passes: Using fresh cached eligibility data
+2026-04-15T02:18:14.265Z [DEBUG] [STARTUP] MCP configs resolved in 43ms (awaited at +397ms)
+2026-04-15T02:18:14.267Z [DEBUG] All plugins already exist, skipping migration
+2026-04-15T02:18:14.267Z [DEBUG] [Reconnection] computeInitialTeamContext: No teammate context set (not a teammate)
+2026-04-15T02:18:14.269Z [DEBUG] Preserving file permissions: 100600
+2026-04-15T02:18:14.269Z [DEBUG] Writing to temp file: /home/sungw/.claude.json.tmp.3516171.1776219494269
+2026-04-15T02:18:14.270Z [DEBUG] Temp file written successfully, size: 30239 bytes
+2026-04-15T02:18:14.270Z [DEBUG] Applied original permissions to temp file
+2026-04-15T02:18:14.270Z [DEBUG] Renaming /home/sungw/.claude.json.tmp.3516171.1776219494269 to /home/sungw/.claude.json
+2026-04-15T02:18:14.270Z [DEBUG] File /home/sungw/.claude.json written atomically
+2026-04-15T02:18:14.270Z [DEBUG] Initialized versioned plugins system with 8 plugins
+2026-04-15T02:18:14.272Z [DEBUG] MCP server "plugin:discord:discord": Starting connection with timeout of 30000ms
+2026-04-15T02:18:14.280Z [DEBUG] MCP server "context7": Starting connection with timeout of 30000ms
+2026-04-15T02:18:14.349Z [DEBUG] [keybindings] KeybindingSetup initialized with 121 bindings, 0 warnings
+2026-04-15T02:18:14.366Z [DEBUG] [FileIndex] getProjectFiles called, respectGitignore=true
+2026-04-15T02:18:14.366Z [DEBUG] [FileIndex] getFilesUsingGit called
+2026-04-15T02:18:14.368Z [DEBUG] [claudeai-mcp] Fetching from https://api.anthropic.com/v1/mcp_servers?limit=1000
+2026-04-15T02:18:14.369Z [DEBUG] [REPL:mount] REPL mounted, disabled=false
+2026-04-15T02:18:14.370Z [DEBUG] performStartupChecks called
+2026-04-15T02:18:14.370Z [DEBUG] Starting background plugin installations
+2026-04-15T02:18:14.371Z [DEBUG] [ScheduledTasks] scheduler start() — enabled=false, hasTasks=false
+2026-04-15T02:18:14.382Z [DEBUG] Official marketplace auto-install skipped: already_attempted
+2026-04-15T02:18:14.382Z [DEBUG] performBackgroundPluginInstallations called
+2026-04-15T02:18:14.383Z [DEBUG] getSkills returning: 11 skill dir commands, 2 plugin skills, 9 bundled skills, 0 builtin plugin skills
+2026-04-15T02:18:14.383Z [DEBUG] [auto-mode] verifyAutoModeGateAccess: enabledState=disabled disabledBySettings=false model=claude-haiku-4-5-20251001 modelSupported=false disableFastModeBreakerFires=false carouselAvailable=false canEnterAuto=false
+2026-04-15T02:18:14.383Z [WARN] auto mode disabled: tengu_auto_mode_config.enabled === "disabled" (circuit breaker)
+2026-04-15T02:18:14.383Z [DEBUG] [auto-mode] kickOutOfAutoIfNeeded applying: ctx.mode=bypassPermissions ctx.prePlanMode=undefined reason=circuit-breaker
+2026-04-15T02:18:14.383Z [DEBUG] [auto-mode] verifyAutoModeGateAccess setAvailable: true -> false
+2026-04-15T02:18:14.384Z [DEBUG] [API:auth] OAuth token check complete
+2026-04-15T02:18:14.386Z [DEBUG] [API REQUEST] /v1/messages x-client-request-id=83d1ae09-a419-4ea0-9e7d-40c9582ae80f source=quota_check
+2026-04-15T02:18:14.386Z [DEBUG] Total LSP servers loaded: 0
+2026-04-15T02:18:14.386Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2026-04-15T02:18:14.386Z [DEBUG] LSP manager initialized with 0 servers
+2026-04-15T02:18:14.386Z [DEBUG] LSP server manager initialized successfully
+2026-04-15T02:18:14.387Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2026-04-15T02:18:14.388Z [DEBUG] Failed to stat directory /etc/claude-code/.claude/output-styles: ENOENT: no such file or directory, statx '/etc/claude-code/.claude/output-styles'
+2026-04-15T02:18:14.388Z [DEBUG] Failed to stat directory /home/sungw/.claude/output-styles: ENOENT: no such file or directory, statx '/home/sungw/.claude/output-styles'
+2026-04-15T02:18:14.388Z [DEBUG] Failed to stat directory /etc/claude-code/.claude/skills: ENOENT: no such file or directory, statx '/etc/claude-code/.claude/skills'
+2026-04-15T02:18:14.388Z [DEBUG] Failed to stat directory /etc/claude-code/.claude/workflows: ENOENT: no such file or directory, statx '/etc/claude-code/.claude/workflows'
+2026-04-15T02:18:14.388Z [DEBUG] Failed to stat directory /home/sungw/.claude/workflows: ENOENT: no such file or directory, statx '/home/sungw/.claude/workflows'
+2026-04-15T02:18:14.388Z [DEBUG] Failed to stat directory /etc/claude-code/.claude/routines: ENOENT: no such file or directory, statx '/etc/claude-code/.claude/routines'
+2026-04-15T02:18:14.388Z [DEBUG] Failed to stat directory /home/sungw/.claude/routines: ENOENT: no such file or directory, statx '/home/sungw/.claude/routines'
+2026-04-15T02:18:14.398Z [DEBUG] Loading plugin discord from source: "./external_plugins/discord"
+2026-04-15T02:18:14.399Z [DEBUG] Watching for changes in skill/command directories: /home/sungw/.claude/skills, /home/sungw/agents/theo/.claude/skills...
+2026-04-15T02:18:14.400Z [DEBUG] Watching for changes in setting files /home/sungw/.claude/settings.json, /home/sungw/agents/theo/.claude/settings.json, /home/sungw/agents/theo/.claude/settings.local.json...
+2026-04-15T02:18:14.400Z [DEBUG] Using manifest version for discord@claude-plugins-official: 0.0.4
+2026-04-15T02:18:14.402Z [DEBUG] Plugin discord@claude-plugins-official version 0.0.4 already cached at /home/sungw/.claude/plugins/cache/claude-plugins-official/discord/0.0.4
+2026-04-15T02:18:14.402Z [DEBUG] Resolved local plugin discord to versioned cache: /home/sungw/.claude/plugins/cache/claude-plugins-official/discord/0.0.4
+2026-04-15T02:18:14.403Z [DEBUG] Found 1 plugins (1 enabled, 0 disabled)
+2026-04-15T02:18:14.414Z [DEBUG] [FileIndex] git ls-files (tracked) took 48ms
+2026-04-15T02:18:14.415Z [DEBUG] Hook output does not start with {, treating as plain text
+2026-04-15T02:18:14.415Z [DEBUG] Hook SessionStart:startup (SessionStart) success:
+No daily note yet.
+2026-04-15T02:18:14.417Z [DEBUG] [FileIndex] git ls-files: 293 tracked files in 51ms
+2026-04-15T02:18:14.419Z [DEBUG] [FileIndex] using git ls-files result (293 files)
+2026-04-15T02:18:14.420Z [DEBUG] [useDeferredValue] Messages deferred by 2 (0→2)
+2026-04-15T02:18:14.448Z [DEBUG] Loaded 4 CLAUDE.md/rules files:
+  [User] /home/sungw/.claude/CLAUDE.md (2475 chars)
+  [User] /home/sungw/.claude/rules/never-do.md (531 chars)
+  [Project] /home/sungw/agents/theo/CLAUDE.md (435 chars)
+  [AutoMem] /home/sungw/.claude/projects/-home-sungw-agents/memory/MEMORY.md (4075 chars)
+2026-04-15T02:18:14.456Z [DEBUG] XTVERSION: terminal identified as "tmux 3.4"
+2026-04-15T02:18:14.456Z [DEBUG] DECSTBM: gated (TMUX=set ZELLIJ=unset TERM_PROGRAM=tmux TERM=tmux-256color)
+2026-04-15T02:18:14.457Z [DEBUG] Ripgrep first use test: PASSED (mode=embedded, path=/home/sungw/.local/share/claude/versions/2.1.97)
+2026-04-15T02:18:14.461Z [DEBUG] [LSP MANAGER] reinitializeLspServerManager() called
+2026-04-15T02:18:14.461Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-04-15T02:18:14.461Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-04-15T02:18:14.461Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 2)
+2026-04-15T02:18:14.461Z [DEBUG] Loaded plugins - Enabled: 1, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2026-04-15T02:18:14.462Z [DEBUG] Total LSP servers loaded: 0
+2026-04-15T02:18:14.462Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2026-04-15T02:18:14.462Z [DEBUG] LSP manager initialized with 0 servers
+2026-04-15T02:18:14.462Z [DEBUG] LSP server manager initialized successfully
+2026-04-15T02:18:14.462Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2026-04-15T02:18:14.464Z [DEBUG] AutoUpdaterWrapper: Installation type: native
+2026-04-15T02:18:14.473Z [DEBUG] [FileIndex] background untracked fetch: 8417 files
+2026-04-15T02:18:14.482Z [DEBUG] [FileIndex] rebuilt index with 293 tracked + 8417 untracked files
+2026-04-15T02:18:14.486Z [DEBUG] [FileIndex] cache refresh completed in 120ms
+2026-04-15T02:18:14.506Z [DEBUG] MCP server "plugin:discord:discord": Successfully connected (transport: stdio) in 235ms
+2026-04-15T02:18:14.506Z [DEBUG] MCP server "plugin:discord:discord": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"hasResourceSubscribe":false,"serverVersion":{"name":"discord","version":"1.0.0"}}
+2026-04-15T02:18:14.506Z [DEBUG] [MCP] Server "plugin:discord:discord" connected with subscribe=false
+2026-04-15T02:18:14.510Z [DEBUG] MCP server "plugin:discord:discord": Channel notifications registered
+2026-04-15T02:18:14.562Z [DEBUG] [Bootstrap] Fetch ok
+2026-04-15T02:18:14.562Z [DEBUG] [Bootstrap] Cache unchanged, skipping write
+2026-04-15T02:18:14.566Z [DEBUG] Org fast mode: disabled (extra_usage_disabled)
+2026-04-15T02:18:14.616Z [DEBUG] [mcp-registry] Loaded 47 official MCP URLs
+2026-04-15T02:18:14.660Z [DEBUG] [claudeai-mcp] Fetched 3 servers
+2026-04-15T02:18:14.661Z [DEBUG] MCP server "claude.ai Google Drive": Initializing claude.ai proxy transport for server mcpsrv_016DiixxqoYfU9XWQWuRkgyK
+2026-04-15T02:18:14.661Z [DEBUG] MCP server "claude.ai Google Drive": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_016DiixxqoYfU9XWQWuRkgyK
+2026-04-15T02:18:14.661Z [DEBUG] MCP server "claude.ai Google Drive": claude.ai proxy transport created successfully
+2026-04-15T02:18:14.662Z [DEBUG] MCP server "claude.ai Google Drive": Starting connection with timeout of 30000ms
+2026-04-15T02:18:14.662Z [DEBUG] MCP server "claude.ai Google Calendar": Initializing claude.ai proxy transport for server mcpsrv_01TuBP7nmE8RvWiuCg5BCrU6
+2026-04-15T02:18:14.662Z [DEBUG] MCP server "claude.ai Google Calendar": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_01TuBP7nmE8RvWiuCg5BCrU6
+2026-04-15T02:18:14.662Z [DEBUG] MCP server "claude.ai Google Calendar": claude.ai proxy transport created successfully
+2026-04-15T02:18:14.662Z [DEBUG] MCP server "claude.ai Google Calendar": Starting connection with timeout of 30000ms
+2026-04-15T02:18:14.662Z [DEBUG] MCP server "claude.ai Gmail": Initializing claude.ai proxy transport for server mcpsrv_01KMNvyNZAm7fu9GXrTWZgEF
+2026-04-15T02:18:14.662Z [DEBUG] MCP server "claude.ai Gmail": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_01KMNvyNZAm7fu9GXrTWZgEF
+2026-04-15T02:18:14.662Z [DEBUG] MCP server "claude.ai Gmail": claude.ai proxy transport created successfully
+2026-04-15T02:18:14.662Z [DEBUG] MCP server "claude.ai Gmail": Starting connection with timeout of 30000ms
+2026-04-15T02:18:14.664Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-04-15T02:18:15.012Z [DEBUG] MCP server "claude.ai Google Drive": claude.ai proxy connection failed after 351ms: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011Ca4kipaeCPVxeqSbg1qq3"}
+2026-04-15T02:18:15.012Z [ERROR] MCP server "claude.ai Google Drive" Error: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011Ca4kipaeCPVxeqSbg1qq3"}
+2026-04-15T02:18:15.012Z [DEBUG] MCP server "claude.ai Google Drive": Authentication required for claude.ai proxy server
+2026-04-15T02:18:15.032Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-04-15T02:18:15.051Z [DEBUG] MCP server "claude.ai Gmail": claude.ai proxy connection failed after 389ms: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011Ca4kipXApPMdCU2Caukyb"}
+2026-04-15T02:18:15.051Z [ERROR] MCP server "claude.ai Gmail" Error: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011Ca4kipXApPMdCU2Caukyb"}
+2026-04-15T02:18:15.051Z [DEBUG] MCP server "claude.ai Gmail": Authentication required for claude.ai proxy server
+2026-04-15T02:18:15.073Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-04-15T02:18:15.224Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-04-15T02:18:15.342Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-04-15T02:18:15.356Z [ERROR] MCP server "context7" Server stderr: Context7 Documentation MCP Server v2.1.8 running on stdio
+2026-04-15T02:18:15.356Z [DEBUG] MCP server "context7": Successfully connected (transport: stdio) in 1076ms
+2026-04-15T02:18:15.356Z [DEBUG] MCP server "context7": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"hasResourceSubscribe":false,"serverVersion":{"name":"Context7","icons":[{"src":"https://context7.com/context7-icon-green.png","mimeType":"image/png"}],"version":"2.1.8","websiteUrl":"https://context7.com","description":"Context7 provides up-to-date documentation and code examples for libraries and frameworks."}}
+2026-04-15T02:18:15.356Z [DEBUG] [MCP] Server "context7" connected with subscribe=false
+2026-04-15T02:18:15.360Z [DEBUG] MCP server "context7": Channel notifications skipped: server did not declare claude/channel capability
+2026-04-15T02:18:15.379Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-04-15T02:18:15.468Z [DEBUG] MCP server "claude.ai Google Calendar": Successfully connected (transport: claudeai-proxy) in 806ms
+2026-04-15T02:18:15.468Z [DEBUG] MCP server "claude.ai Google Calendar": Connection established with capabilities: {"hasTools":true,"hasPrompts":true,"hasResources":false,"hasResourceSubscribe":false,"serverVersion":{"name":"StatelessServer","version":"ESF"}}
+2026-04-15T02:18:15.468Z [DEBUG] [MCP] Server "claude.ai Google Calendar" connected with subscribe=false
+2026-04-15T02:18:15.958Z [DEBUG] MCP server "claude.ai Google Calendar": Channel notifications skipped: server did not declare claude/channel capability
+2026-04-15T02:18:15.977Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-04-15T02:19:20.823Z [DEBUG] MCP server "context7": Sending SIGINT to MCP server process
+2026-04-15T02:19:20.823Z [DEBUG] MCP server "claude.ai Google Calendar": SSE transport closed/disconnected, attempting automatic reconnection
+2026-04-15T02:19:20.823Z [DEBUG] LSP server manager shut down successfully
+2026-04-15T02:19:20.824Z [DEBUG] FileHistory: Added snapshot for 9c34ba21-7303-4d66-8e8c-c4dc25148f08, tracking 0 files
+2026-04-15T02:19:20.825Z [DEBUG] MCP server "claude.ai Google Calendar": Initializing claude.ai proxy transport for server mcpsrv_01TuBP7nmE8RvWiuCg5BCrU6
+2026-04-15T02:19:20.825Z [DEBUG] MCP server "claude.ai Google Calendar": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_01TuBP7nmE8RvWiuCg5BCrU6
+2026-04-15T02:19:20.825Z [DEBUG] MCP server "claude.ai Google Calendar": claude.ai proxy transport created successfully
+2026-04-15T02:19:20.825Z [DEBUG] MCP server "claude.ai Google Calendar": Starting connection with timeout of 30000ms
+2026-04-15T02:19:20.827Z [DEBUG] Preserving file permissions: 100600
+2026-04-15T02:19:20.827Z [DEBUG] Writing to temp file: /home/sungw/.claude.json.tmp.3516171.1776219560827
+2026-04-15T02:19:20.828Z [DEBUG] Temp file written successfully, size: 30239 bytes
+2026-04-15T02:19:20.828Z [DEBUG] Applied original permissions to temp file
+2026-04-15T02:19:20.828Z [DEBUG] Renaming /home/sungw/.claude.json.tmp.3516171.1776219560827 to /home/sungw/.claude.json
+2026-04-15T02:19:20.828Z [DEBUG] File /home/sungw/.claude.json written atomically
+2026-04-15T02:19:20.830Z [DEBUG] [useDeferredValue] Messages deferred by 3 (2→5)
+2026-04-15T02:19:20.833Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-04-15T02:19:20.834Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-04-15T02:19:20.835Z [DEBUG] Plugin autoupdate: skipped (auto-updater disabled)
+2026-04-15T02:19:20.858Z [DEBUG] [useDeferredValue] Messages deferred by 3 (2→5)
+2026-04-15T02:19:20.862Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-04-15T02:19:20.865Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-04-15T02:19:20.924Z [DEBUG] MCP server "context7": SIGINT failed, sending SIGTERM to MCP server process
+2026-04-15T02:19:20.957Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-04-15T02:19:20.958Z [DEBUG] [FileIndex] getProjectFiles called, respectGitignore=true
+2026-04-15T02:19:20.958Z [DEBUG] [FileIndex] getFilesUsingGit called
+2026-04-15T02:19:20.960Z [DEBUG] [FileIndex] git ls-files (tracked) took 2ms
+2026-04-15T02:19:20.960Z [DEBUG] [FileIndex] git ls-files: 293 tracked files in 2ms
+2026-04-15T02:19:20.961Z [DEBUG] [FileIndex] using git ls-files result (293 files)
+2026-04-15T02:19:20.961Z [DEBUG] [FileIndex] skipped index rebuild — tracked paths unchanged
+2026-04-15T02:19:20.961Z [DEBUG] [FileIndex] cache refresh completed in 4ms
+2026-04-15T02:19:20.979Z [DEBUG] MCP server "context7": MCP server process exited cleanly
+2026-04-15T02:19:20.989Z [DEBUG] [FileIndex] background untracked fetch: 8417 files
+2026-04-15T02:19:20.997Z [DEBUG] [FileIndex] rebuilt index with 293 tracked + 8417 untracked files
+2026-04-15T02:19:21.216Z [DEBUG] Preserving file permissions: 100600
+2026-04-15T02:19:21.216Z [DEBUG] Writing to temp file: /home/sungw/.claude.json.tmp.3516171.1776219561216
+2026-04-15T02:19:21.218Z [DEBUG] Temp file written successfully, size: 30239 bytes
+2026-04-15T02:19:21.218Z [DEBUG] Applied original permissions to temp file
+2026-04-15T02:19:21.218Z [DEBUG] Renaming /home/sungw/.claude.json.tmp.3516171.1776219561216 to /home/sungw/.claude.json
+2026-04-15T02:19:21.218Z [DEBUG] File /home/sungw/.claude.json written atomically
+2026-04-15T02:19:21.218Z [DEBUG] Preserving file permissions: 100600
+2026-04-15T02:19:21.218Z [DEBUG] Writing to temp file: /home/sungw/.claude.json.tmp.3516171.1776219561218
+2026-04-15T02:19:21.219Z [DEBUG] Temp file written successfully, size: 30240 bytes
+2026-04-15T02:19:21.219Z [DEBUG] Applied original permissions to temp file
+2026-04-15T02:19:21.219Z [DEBUG] Renaming /home/sungw/.claude.json.tmp.3516171.1776219561218 to /home/sungw/.claude.json
+2026-04-15T02:19:21.219Z [DEBUG] File /home/sungw/.claude.json written atomically
