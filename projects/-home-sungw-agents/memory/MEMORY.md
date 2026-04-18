@@ -20,7 +20,6 @@
 - `[F]` [햄토리 핵심 역할 — ecosystem 변화 전파 관리](feedback_hamtori_change_propagation_role.md) — 구조 변경 시 누구에게 무엇을 전파할지 관리하는 것이 햄토리의 본질적 책임 (2026-04-11 마스터 선언)
 - `[F]` [Teacher Knowledge Infrastructure 구축](project_teacher_knowledge_infrastructure.md) — 3-Layer(knowledge/skills/data) 발달 심리학 인프라, 커밋 78ef23d
 - `[P]` [Teacher 철학 기반 — 자기 발전 + 미래 세대 책임](feedback_teacher_founding_philosophy.md) — 수동적 데이터 소비 아닌 능동적 자기 발전, 매 대화가 미래 세대 자산
-- `[F]` [Layer 3 Follow-up 리포트 — 04-17 09:03 제출](project_layer3_followup_report.md) — d0d3b22 후 7일 검증, executor 3회+/실패복구 1회+/opus<0.3 데이터 수집 중
 - `[P]` [git push 자율 판단](feedback_git_push_autonomous.md) — push는 묻지 말고 필요할 때 자율 실행, 커밋 쌓이면 바로 push
 - `[P]` [주체적으로 판단하고 알아서 진행](feedback_be_autonomous.md) — 이견 없을 것 같은 작업은 묻지 말고 자율 진행
 - `[F]` [김태오 프로필 — 초키봇의 핵심 유저](user_taeo_profile.md) — 낙생초 1학년 5반, 공동육아 유치원 덩더쿵 졸업, 화목한 세 가족
@@ -30,3 +29,13 @@
 - `[P]` [ecosystem 발전은 자율 판단으로 진행](feedback_ecosystem_development_trust.md) — ecosystem 발전시키는 방향이면 확인 없이 자율 진행
 - `[P]` [자료수집 시 필요 도구 자율 추가](feedback_self_improve_tools.md) — 기존에 없는 도구/MCP/스킬 필요하면 묻지 않고 알아서 세팅+자가발전 (2026-04-14)
 - `[C]` [Discord 새 봇 Privileged Intents 필수](feedback_discord_privileged_intents.md) — Developer Portal에서 MESSAGE CONTENT INTENT 등 반드시 활성화, 미설정 시 "Used disallowed intents"로 bun 즉사
+- `[F]` [MacBook SSH 접근 정보](reference_macbook_ssh_access.md) — `ssh -i ~/.ssh/id_rsa RoyKim@100.98.222.23`, 유저네임 RoyKim 절대 잊지 말 것
+- `[F]` [Claude CLI --channels 플래그 2.1.109에서 문서화 제거](project_claude_cli_channels_flag_undocumented.md) — 런타임은 accept 중이지만 --help에 없음. 업데이트 전 changelog 필수 체크
+- `[F]` [gateguard-fact-force 훅 SESSION_ID ppid 버그 로컬 패치](project_gateguard_fact_force_local_patch.md) — everything-claude-code 플러그인 훅이 매 호출마다 새 ppid로 state 초기화 → bash/Edit 게이트가 세션 내내 차단. /proc 체인 walk로 stable claude PID 찾도록 로컬 패치, 플러그인 업데이트 시 재적용 필요
+- `[P]` ["순서대로 하라" = 출력 순서, 병렬 실행 금지 아님](feedback_sequential_output_parallel_execution.md) — 독립 가능한 subagent 작업은 "A 먼저 B 나중"이라 해도 병렬 런칭, 출력만 순서대로. Phase N이 Phase N-1 input을 안 쓰면 대기 금지
+- `[F]` [FMS report_to 규칙 — multi-step 중 master 직송 금지](project_fms_report_to_rule.md) — 오케스트레이터 검증 사이클 보호. 2026-04-16 씽커→디지 Sprint 1 incident 박제. mailbox-send SKILL.md + never-do PROTOCOL 카테고리 canonical
+- `[F]` [discussion 채널 — 봇간 자기개선 토론 (ID 1494027439163048127)](project_discussion_channel.md) — 공식 네이밍 "discussion" (bot-lab 금지). mention-only + hop 20 + @everyone+정지키워드 panic. 참여 4봇 access.json 패치됨, hot reload
+- `[C]` [Discussion 채널 mention-only 구조상 "대기 모드" 선언 금지](feedback_discord_mention_only_no_wait_mode.md) — 2026-04-17 17분 침묵 incident 박제. 타봇 답 passive 대기 불가, 멘션 유도 or fetch 폴링 필수
+- `[F]` [discord-reply-enforce Stop hook 설치](project_discord_reply_enforce_hook.md) — transcript 출력만 하고 reply 미호출 시 exit 2로 block. 2026-04-17 6봇 전파 완료, 재시작 후 적용
+- `[F]` [옵시/햄토리 meta-skill 영역 = ecosystem 재설계 사고](feedback_meta_skill_ecosystem_redesign.md) — polling→event-driven 전환, 훅 재설계, 스킬 폐루프 구조변경 같은 ecosystem-level 설계는 두 봇 책임 (2026-04-17 마스터 선언)
+- `[F]` [daily-skill-scan 구현 — 각 봇 새벽 cron 자기 대화 LLM 스캔](project_daily_skill_scan_implementation.md) — CLAUDE.md/common/skills 안 건드림 구조, hooks/daily-skill-scan.sh + prompts/. 2026-04-17 구현 세션이 첫 감지 대상
