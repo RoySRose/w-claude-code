@@ -9,6 +9,6 @@ originSessionId: 079d6402-47e9-46ab-b368-7f580b0a1cd7
 - SERVER MEMBERS INTENT
 - **MESSAGE CONTENT INTENT** (핵심)
 
-**Why:** 초키봇(theo) 첫 세팅 때 이 설정을 빠뜨려서 `discord channel: login failed: Error: Used disallowed intents`로 bun 프로세스가 즉시 exit code 1로 죽었다. Claude Code는 MCP 서버 실패를 "plugin:discord:discord · ✘ failed"로만 표시하고 에러 메시지를 숨기므로, strace로 `write()` syscall을 캡처해서야 원인을 찾았다.
+**Why:** 초키봇(chokie, 구 theo) 첫 세팅 때 이 설정을 빠뜨려서 `discord channel: login failed: Error: Used disallowed intents`로 bun 프로세스가 즉시 exit code 1로 죽었다. Claude Code는 MCP 서버 실패를 "plugin:discord:discord · ✘ failed"로만 표시하고 에러 메시지를 숨기므로, strace로 `write()` syscall을 캡처해서야 원인을 찾았다.
 
 **How to apply:** add-new-bot skill 절차에 Developer Portal intent 설정 단계를 추가. 봇이 Discord에 연결 안 되면 제일 먼저 intent 설정을 의심할 것.

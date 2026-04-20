@@ -20,6 +20,33 @@ originSessionId: 495405cb-e087-4fc8-a7f3-5d99146f26b0
 - 만약 사용자 정책이 바뀌어서 "permission DM 다시 받고 싶어" 라고 하면, 이 패치 블록을 원복하고 원래 ActionRowBuilder 로직 복원. 원본 코드는 git blame 또는 마켓플레이스 최신 pull로 회수 가능.
 - 패치의 의도는 **전 에이전트 완전 자율 운영** — 성욱은 권한/확인 묻지 말라고 명시했고(`feedback_no_permission_questions`), 플러그인 레벨에서도 이 원칙을 강제해야 함.
 
+**추가 패치 #2 — GroupPolicy.mentionExempt (2026-04-16)**:
+- **파일**: `/home/sungw/.claude/plugins/marketplaces/claude-plugins-official/external_plugins/discord/server.ts` (cache/ 경로는 봇 재기동 시 동기화)
+- **위치**: `type GroupPolicy` 선언 (line ~100) + `gate()` 함수 (line ~289)
+- **변경**: `mentionExempt?: string[]` 필드 추가, gate() 에서 `if (requireMention && !mentionExempt.includes(senderId) && !isMentioned(...))` 로 확장
+- **Why**: 로즈 전용 채널(2봇 × 2채널)에서 로즈 user 는 mention 없이 gate 통과, 마스터(관리자)는 mention 필수라는 **user 별 mention 차등 정책** 요구.
+- **스키마 확장**: `access.json groups[<channel>].mentionExempt = [user_id,...]` — optional, 미지정 시 기존 동작 유지 (하위 호환)
+- **현재 적용 대상**: `researcher-rose`/`designer-rose` 2봇 access.json 에 로즈 user_id `937170156415750174` 등록
+- **재기동**: 기존 5봇(hamtori/thinker/researcher/designer/obsidian/teacher/chokie)은 `mentionExempt` 미사용이라 영향 X. rose 2봇은 최초 기동 시 신규 바이너리 자동 반영.
+
+**추가 패치 #3 — Primary-side targeted-mention drop (2026-04-17)**:
+- **파일**: `/home/sungw/.claude/plugins/cache/claude-plugins-official/discord/0.0.4/server.ts` (marketplaces 사본은 mention-only 필터 자체 없는 구버전이라 무관)
+- **위치**: `handleInbound()` 안 MENTION_ONLY_CHANNELS 블록 (line ~838)
+- **변경**: primary 발화자여도 `msg.mentions.users.size > 0 && !msg.mentions.users.has(myId)` 이면 drop — "타봇 단독 멘션" 메시지를 서버 레벨에서 버림
+- **Why**: discussion 채널(1494027439163048127)에서 master가 특정 봇 1개만 멘션했는데 모든 primary 봇이 메시지를 수신 → 각자 `sendTyping()` 발사 → 응답 안 하면 typingIntervals clear 안 됨 → "several people are typing..." 영구 지속 버그. system-reminder GROUP rule 3("특정 봇 호명 시 본인 아니면 응답 금지")를 프롬프트만이 아니라 서버에서 강제.
+- **How to apply**: 플러그인 업데이트 시 재적용. 패치 식별자는 주석 "Primary-side targeted-mention filter". 적용 후 discussion 참여 전 봇(hamtori/thinker/researcher/designer/obsidian) 재시작 필수.
+- **검증 (2026-04-17 09:35)**: 4봇 재기동 후 master 가 햄토리만 멘션 → 타 봇 typing 소실 confirmed by master.
+
+**추가 패치 #4 — Group 채널 fetchReference skip (2026-04-17, typing leak fix)**:
+- **파일**:
+  1. `/home/sungw/.claude/plugins/marketplaces/claude-plugins-official/external_plugins/discord/server.ts` (primary)
+  2. `/home/sungw/.claude/plugins/cache/claude-plugins-official/discord/0.0.4/server.ts` (cache 동기화)
+- **위치**: `isMentioned(msg, extraPatterns?)` (line ~305) 함수 내 fetchReference 블록 (line ~314-317). 시그니처 `isMentioned(msg, access, extraPatterns?)` 로 확장
+- **변경**: `refId` 있을 때 `access.groups[channelId].type === 'group'` 이면 `fetchReference()` 스킵 (엄격 mention-only). `type !== 'group'` (solo 채널) 에서만 기존 fetchReference 경로 유지
+- **Why**: 2026-04-17 10:14/10:22 KST 마스터가 discussion 채널에서 `thinker is typing...` 현상 발견. 진단: fetchReference 에 age guard 없어 6시간+ 전 봇 메시지에 native reply 만 해도 implicit mention 통과 → group 채널 엄격 mention 설계 와해. HAMTORI SCHEMA v2 (2026-04-16) 설계 후 group 채널 (discussion) 추가되면서 미검토된 엣지. 씽커 3안 (A age guard / B 전체 제거 / C 프로토콜 규율) 대신 햄토리 D안 (type별 분기) 채택 — access.json SSOT 유지 + solo 대화 연속성 보존 + group 엄격 강제 동시 만족
+- **재적용**: 플러그인 업데이트 시 패치 소실 여부 확인 (`grep "type !== 'group'" .../server.ts`). 재적용 후 discussion 참여 5봇 (hamtori/thinker/researcher/designer/obsidian) 재시작 필수 — 02:00 KST daily-restart 대기 또는 수동 `restart-agent.sh`
+- **검증**: 씽커 edit 완료 후 discussion 에 hamtori/옵시가 씽커 과거 메시지에 native reply → 씽커 typing 발동 X 확인
+
 **공식 Claude Code Channels 패턴 매핑 (2026-04-09 발견)**: 이 Discord 플러그인은 Anthropic 공식 `claude-plugins-official/discord` 이자 **Claude Code Channels MCP 계열의 커스텀 구현체**다. akwiki + 공식 Telegram channel docs 교차검증 결과:
 - tool 이름 `reply`/`react`/`edit_message`/`fetch_messages`/`download_attachment` — 공식 Channels spec 과 정확히 일치
 - 디렉토리 구조 `.claude/channels/discord/{inbox/, access.json, .env}` — 공식 spec 과 정확히 일치

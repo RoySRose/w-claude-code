@@ -1,14 +1,14 @@
 <!-- 3-Type Memory Tags: [P]=Preference(매 세션 적용 스타일/방식), [C]=Correction(재발 방지), [F]=Fact(영구 사실/구조) -->
 - `[P]` [Discord 작업 중 진행 상황 즉시 보고](feedback_discord_progress_updates.md) — 채팅 작업 시 침묵 금지, 시작/진행/완료 단계별 알림
 - `[C]` [내 이름은 햄토리 (Hamtori)](feedback_my_name_is_hamtori.md) — "하모토리" 오타 금지, 자기 지칭은 항상 햄토리
-- `[P]` [권한/확인 묻지 말고 바로 실행](feedback_no_permission_questions.md) — "진행할까?" 금지, bypassPermissions로 권한 스팸 방지
 - `[F]` [봇간 위임은 FMS (filesystem mailbox)](project_filesystem_mailbox.md) — mail/<bot>/pending + inotify watcher. 2026-04-09 PoC 성공, Discord Task Request Format 은 deprecated
 - `[F]` [localhost 대신 Tailscale 주소 사용](feedback_tailscale_address.md) — URL은 실행 머신의 tailnet IP(claw=100.112.142.127), 서버는 0.0.0.0 바인딩 + next.config allowedDevOrigins 필수
 - `[P]` [결과·보고 상세 포맷 필수](feedback_reporting_style.md) — 판정+액션 작업은 리뷰대상/확인/판정/근거/액션 5필드로 상세 보고, 한줄 요약 금지
+- `[P]` [시나리오 기반 단계별 보고](feedback_scenario_based_reporting.md) — 설계/진행 설명은 metaphor 금지, 실제 entity 시나리오 → 단계 분해 → 테이블 → 약점 포인트
+- `[C]` [형에게 문제 들고 갈 때 3단계 필터](feedback_problem_reporting_three_filter.md) — 진짜문제? 정말문제맞아? (a)기능→(b)문제→(c)해결 쉽게. 2026-04-18 snapshot-단정 incident 박제
 - `[F]` [Discord 플러그인 auto-allow 로컬 패치](project_discord_plugin_patch.md) — server.ts permission_request handler 패치, 플러그인 업데이트시 재적용 필수
 - `[F]` [시스템 cron은 KST 기준](project_cron_timezone.md) — 호스트 tz가 Asia/Seoul, crontab 시각 필드는 KST 그대로 해석. 기존 "= UTC" 코멘트는 오답
-- `[F]` [옵시 역할 = ecosystem 관리자 + 전략적 지식 책임자](feedback_obsidian_ecosystem_owner_role.md) — 2026-04-08 확장, vault/skills/never-do/MEMORY뿐 아니라 JSONL lifecycle/외부 ingest/decision log까지 포함
-- `[C]` [옵시 self-limit 금지 — hooks/ + 공유 인프라 full write](feedback_obsidian_no_self_limit.md) — bot isolation은 정체성 격리이지 공유 인프라 격리 아님, 추측으로 선 긋지 말 것
+- `[F]` [옵시 역할 = ecosystem 관리자 + 전략적 지식 책임자 (+ self-limit 금지)](feedback_obsidian_ecosystem_owner_role.md) — 2026-04-08 확장, hooks/·PROTOCOL·공유 인프라 full write. bot isolation은 정체성 격리이지 공유 인프라 격리 아님
 - `[F]` [4-Layer Configuration Model (User/Ecosystem/Bot/Project)](project_4_layer_config_model.md) — 2026-04-08 마스터 합의. 새 artifact 위치는 항상 4단 rubric. "바뀌면 누가 영향받나?"가 유일 기준
 - `[F]` [Discord Plugin bun 프로세스 사망 패턴](project_discord_plugin_process_death.md) — context overflow 후 bun server.ts 죽고 Claude만 생존. 진단: pstree로 bun 자식 확인. 해결: --restart
 - `[F]` [봇 skill은 Claude Code native discovery](feedback_skill_loading_on_demand.md) — .claude/skills/*/SKILL.md 구조, description-only context load. INDEX.md 방식 deprecated (2026-04-11)
@@ -20,13 +20,10 @@
 - `[F]` [햄토리 핵심 역할 — ecosystem 변화 전파 관리](feedback_hamtori_change_propagation_role.md) — 구조 변경 시 누구에게 무엇을 전파할지 관리하는 것이 햄토리의 본질적 책임 (2026-04-11 마스터 선언)
 - `[F]` [Teacher Knowledge Infrastructure 구축](project_teacher_knowledge_infrastructure.md) — 3-Layer(knowledge/skills/data) 발달 심리학 인프라, 커밋 78ef23d
 - `[P]` [Teacher 철학 기반 — 자기 발전 + 미래 세대 책임](feedback_teacher_founding_philosophy.md) — 수동적 데이터 소비 아닌 능동적 자기 발전, 매 대화가 미래 세대 자산
-- `[P]` [git push 자율 판단](feedback_git_push_autonomous.md) — push는 묻지 말고 필요할 때 자율 실행, 커밋 쌓이면 바로 push
-- `[P]` [주체적으로 판단하고 알아서 진행](feedback_be_autonomous.md) — 이견 없을 것 같은 작업은 묻지 말고 자율 진행
+- `[C]` [AUTONOMY never-do 카테고리 — 권한/확인 질문 금지, 자율 실행 default](../../../../.claude/rules/never-do.md) — 5 incident 통합 (2026-04-09 권한스팸/Agent Teams · 2026-04-13 주체적봇/git push/ecosystem/거시). never-do [SOFT] AUTONOMY 단일 rule
 - `[F]` [김태오 프로필 — 초키봇의 핵심 유저](user_taeo_profile.md) — 낙생초 1학년 5반, 공동육아 유치원 덩더쿵 졸업, 화목한 세 가족
-- `[F]` [Theo 봇 이름 — 초키봇 / 채널 태오랑초키랑](project_theo_bot_naming.md) — 태오가 초키봇을 이미 알고 있어서 활용, 2026-04-15 마스터 결정
+- `[F]` [Chokie 봇 이름 — 초키봇 / 채널 태오랑초키랑](project_chokie_bot_naming.md) — 기술 ID는 chokie, display_name 초키봇. 2026-04-18 theo→chokie 리네임
 - `[C]` [초키봇은 teacher가 직접 통제 — 햄토리 릴레이 금지](feedback_choki_direct_control.md) — 교육 관련 파일(SOUL/IDENTITY/USER/skills)은 직접 수정, 인프라만 햄토리 영역
-- `[P]` [거시적 사고 — 짜잘한 유지보수 말고 전략적 개선](feedback_think_strategically.md) — restart/코멘트 정리 제안 금지, ecosystem 개선 방향을 스스로 구상하고 주도
-- `[P]` [ecosystem 발전은 자율 판단으로 진행](feedback_ecosystem_development_trust.md) — ecosystem 발전시키는 방향이면 확인 없이 자율 진행
 - `[P]` [자료수집 시 필요 도구 자율 추가](feedback_self_improve_tools.md) — 기존에 없는 도구/MCP/스킬 필요하면 묻지 않고 알아서 세팅+자가발전 (2026-04-14)
 - `[C]` [Discord 새 봇 Privileged Intents 필수](feedback_discord_privileged_intents.md) — Developer Portal에서 MESSAGE CONTENT INTENT 등 반드시 활성화, 미설정 시 "Used disallowed intents"로 bun 즉사
 - `[F]` [MacBook SSH 접근 정보](reference_macbook_ssh_access.md) — `ssh -i ~/.ssh/id_rsa RoyKim@100.98.222.23`, 유저네임 RoyKim 절대 잊지 말 것
@@ -39,3 +36,7 @@
 - `[F]` [discord-reply-enforce Stop hook 설치](project_discord_reply_enforce_hook.md) — transcript 출력만 하고 reply 미호출 시 exit 2로 block. 2026-04-17 6봇 전파 완료, 재시작 후 적용
 - `[F]` [옵시/햄토리 meta-skill 영역 = ecosystem 재설계 사고](feedback_meta_skill_ecosystem_redesign.md) — polling→event-driven 전환, 훅 재설계, 스킬 폐루프 구조변경 같은 ecosystem-level 설계는 두 봇 책임 (2026-04-17 마스터 선언)
 - `[F]` [daily-skill-scan 구현 — 각 봇 새벽 cron 자기 대화 LLM 스캔](project_daily_skill_scan_implementation.md) — CLAUDE.md/common/skills 안 건드림 구조, hooks/daily-skill-scan.sh + prompts/. 2026-04-17 구현 세션이 첫 감지 대상
+- `[F]` [Edu Briefing W16 Feedback — making material 부족](project_edu_briefing_feedback_w16.md) — 2026-04-18 teacher reply. policy/risk 13/15, age-relevant 2/15. W17부터 making·후기 쿼리 추가
+- `[F]` [날씨 질문 = weather.py 호출 (WebSearch 금지)](reference_weather_script.md) — `weather.py --region 분당 --period 오늘` 기본. 기상청 API + 옷차림 + 미세먼지 포맷 고정
+- `[C]` [Vault 저장 시 Personal vs Ecosystem 판정 라우팅](feedback_vault_personal_vs_ecosystem_routing.md) — 2026-04-19 마스터 지시. Profile/People/Projects vs Decisions/AI-Agents/Education. 미래 retrieval 염두, 태그 schema 유지, 원문 verbatim 박제
+- `[F]` [개인사업자 "꿈나무" 보유](user_business_registration.md) — Apps in Toss 등 사업자 필수 플랫폼 입점 블로킹 없음. 세무·결제 꿈나무 명의

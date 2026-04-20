@@ -1,6 +1,6 @@
 ---
 name: 봇 skill은 Claude Code native discovery 기반 (.claude/skills/<name>/SKILL.md)
-description: 2026-04-11 마이그레이션 완료. .claude/skills/*/SKILL.md 디렉토리 구조 + description-only context loading. 이전 INDEX.md 방식 deprecated. PROTOCOL.md §Skill Format이 canonical reference
+description: Claude Code native skill discovery (.claude/skills/<name>/SKILL.md, description-only). INDEX.md deprecated. PROTOCOL.md §Skill Format canonical
 type: feedback
 originSessionId: c4b77216-718c-4631-b9fb-ec2f0d79a2d4
 ---
