@@ -47,6 +47,18 @@ originSessionId: 495405cb-e087-4fc8-a7f3-5d99146f26b0
 - **재적용**: 플러그인 업데이트 시 패치 소실 여부 확인 (`grep "type !== 'group'" .../server.ts`). 재적용 후 discussion 참여 5봇 (hamtori/thinker/researcher/designer/obsidian) 재시작 필수 — 02:00 KST daily-restart 대기 또는 수동 `restart-agent.sh`
 - **검증**: 씽커 edit 완료 후 discussion 에 hamtori/옵시가 씽커 과거 메시지에 native reply → 씽커 typing 발동 X 확인
 
+**추가 패치 #5 — reply tool embeds 지원 (2026-04-20, table-render fix)**:
+- **파일**: `/home/sungw/.claude/plugins/cache/claude-plugins-official/discord/0.0.4/server.ts` (marketplaces 사본도 동일 적용 필요)
+- **위치**:
+  1. `ListToolsRequestSchema` 핸들러 내 `name: 'reply'` 의 `inputSchema.properties` (line ~523)
+  2. `CallToolRequestSchema` 핸들러 `case 'reply'` (line ~605)
+- **변경**: tool schema 에 `embeds: Array<{title?, description?, color?, url?, fields?: [{name, value, inline?}], footer?, author?, timestamp?}>` 추가. handler 에서 `args.embeds` 읽어서 첫 chunk 의 `ch.send({..., embeds})` 로 전달. max 10 embeds 검증.
+- **Why**: Discord 가 markdown table(`| 헤더 | ... |\n|---|---|`) rendering 을 공식 미지원 → 마스터가 파이프 문자 그대로 보는 현상. 2026-04-20 KST "디스코드에서 테이블로 보이지가 않아서 보기가 너무 불편해" 지적. Discord embed `fields: [{..., inline: true}]` 3개 연속이 유일한 native 3-column grid 렌더링. 볼드-불릿 + 코드블록 ASCII 는 fallback 이고, 진짜 표처럼 보이려면 embed 필수.
+- **호환성**: 완전 additive. embeds 미사용 호출자는 이전과 동일 동작 (옵셔널 파라미터).
+- **재적용**: 플러그인 업데이트 시 패치 소실 여부 확인 (`grep "embeds: Array<Record" .../server.ts`). 재적용 후 전체 봇 재시작 필요 — MCP tool schema 는 세션 시작 시점에 cache 됨.
+- **검증 예시**: `reply({chat_id, text: "결과", embeds: [{title: "Context bloat", color: 0x5865F2, fields: [{name: "항목", value: "git 지시문", inline: true}, {name: "현재", value: "주입 중", inline: true}, {name: "영향", value: "system 박힘", inline: true}, ...]}]})` — 3-column 그리드 native 렌더.
+- **박제 가이드**: `agents/PROTOCOL.md` §Discord Message Formatting, `feedback_discord_no_markdown_tables.md`.
+
 **공식 Claude Code Channels 패턴 매핑 (2026-04-09 발견)**: 이 Discord 플러그인은 Anthropic 공식 `claude-plugins-official/discord` 이자 **Claude Code Channels MCP 계열의 커스텀 구현체**다. akwiki + 공식 Telegram channel docs 교차검증 결과:
 - tool 이름 `reply`/`react`/`edit_message`/`fetch_messages`/`download_attachment` — 공식 Channels spec 과 정확히 일치
 - 디렉토리 구조 `.claude/channels/discord/{inbox/, access.json, .env}` — 공식 spec 과 정확히 일치
