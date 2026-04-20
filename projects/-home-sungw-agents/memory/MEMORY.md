@@ -33,6 +33,7 @@
 - `[F]` [FMS report_to 규칙 — multi-step 중 master 직송 금지](project_fms_report_to_rule.md) — 오케스트레이터 검증 사이클 보호. 2026-04-16 씽커→디지 Sprint 1 incident 박제. mailbox-send SKILL.md + never-do PROTOCOL 카테고리 canonical
 - `[F]` [discussion 채널 — 봇간 자기개선 토론 (ID 1494027439163048127)](project_discussion_channel.md) — 공식 네이밍 "discussion" (bot-lab 금지). mention-only + hop 20 + @everyone+정지키워드 panic. 참여 4봇 access.json 패치됨, hot reload
 - `[C]` [Discussion 채널 mention-only 구조상 "대기 모드" 선언 금지](feedback_discord_mention_only_no_wait_mode.md) — 2026-04-17 17분 침묵 incident 박제. 타봇 답 passive 대기 불가, 멘션 유도 or fetch 폴링 필수
+- `[C]` [Discord 봇 메시지에 markdown table 금지](feedback_discord_no_markdown_tables.md) — 2026-04-20 마스터 지적. Discord 가 table syntax 렌더 미지원, 파이프 문자 그대로 박제. default 볼드-불릿, 정렬 필수일 때만 코드블록 ASCII
 - `[F]` [discord-reply-enforce Stop hook 설치](project_discord_reply_enforce_hook.md) — transcript 출력만 하고 reply 미호출 시 exit 2로 block. 2026-04-17 6봇 전파 완료, 재시작 후 적용
 - `[F]` [옵시/햄토리 meta-skill 영역 = ecosystem 재설계 사고](feedback_meta_skill_ecosystem_redesign.md) — polling→event-driven 전환, 훅 재설계, 스킬 폐루프 구조변경 같은 ecosystem-level 설계는 두 봇 책임 (2026-04-17 마스터 선언)
 - `[F]` [daily-skill-scan 구현 — 각 봇 새벽 cron 자기 대화 LLM 스캔](project_daily_skill_scan_implementation.md) — CLAUDE.md/common/skills 안 건드림 구조, hooks/daily-skill-scan.sh + prompts/. 2026-04-17 구현 세션이 첫 감지 대상
