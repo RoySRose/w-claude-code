@@ -90,6 +90,13 @@
   - **박제 incident**: 2026-04-27 KST muhanbu pre_sign 가입 게이트 작업. 씽커가 "ruff/typecheck/lint/build 게이트 전부 PASS"로 GREEN 보고했으나 hermes 후체크에서 `tests/test_pre_sign.py:312 RUF100` 잔존 발견. 원인: test-regression-engineer 산출물 final commit 후 ruff 재실행 안 함 + gate 명칭 collapse + project-wide vs narrow scope 미구분. fix commit `518be40` (muhanbu).
   - **승격 트리거**: 같은 카테고리 violation 2건 이상 재발 시 HARD 승격 (PreToolUse 훅으로 final report 직전 ruff/lint 자동 재실행 강제).
 
+- `[SOFT]` **drop/keep/대체 권장 박제 전 reference precedent 의 우리 환경 매핑 §명시 필수** (count: 1, since: 2026-05-07)
+  - 외부 reference (OpenCrab / 다른 봇 / 외부 라이브러리 등) 가 어떤 컴포넌트/패턴을 *왜* 채택했는지의 컨텍스트를 우리 환경에 매핑하지 않고 drop/keep/대체 권장 박제 금지. *우리 환경에 그 채택 정당성이 부적용* 임을 명시 박제해야 권장안 신뢰성 확보.
+  - **허용 조건 (매핑 생략 정당한 경우)**: ① 비교 대상 reference 가 vault/ecosystem 내부에 박제 없음 (= 외부 ground truth 부재), ② 컴포넌트 채택 정당성 자체가 우리 환경과 명백히 무관 (예: 분산 시스템용 컴포넌트 단일 사용자 환경 검토), ③ 마스터 명시 skip 요청.
+  - **default 박제 절차**: (a) reference precedent §찾기 (vault Decisions/ + 코드/문서 grep) → (b) 채택 정당성 §재독해 → (c) 우리 환경 매핑 §명시 (어느 축이 부적용 / 어느 축이 적용) → (d) 권장안 박제. **drop 권장 시 특히 강제** — 안 한 채로 박으면 "reference 가 일부러 둔 컴포넌트 = 그 이유 검증 안 함" 문제.
+  - **박제 incident**: 2026-05-07 KST store 조합 후보 비교 (Decision `2026-05-07-store-stack-candidate-comparison`). 옵시 1차 권장 = "Mongo drop" 박제 시 OpenCrab 의 Mongo 활용 컨텍스트 (= 9-space 노드의 free-form property dict 흡수 + SaaS multi-tenant property store) 매핑 누락. 마스터 challenge (msg `1501834695867109489`: *"오픈크랩에서는 mongo 를 어디에 활용하고 있는데 우리는 drop 을 생각했지?"*) → §추가 박제 (commit `fc0838c`) + 옵션 D' (Mongo 유지 + 역할 명시) 추가. 누락 사유 = OpenCrab dissection 노트의 *결함* (cross-tenant leak) 만 활성화돼 *use-case 정당성* 컨텍스트가 권장 단계에서 호출 안 됨.
+  - **승격 트리거**: reference precedent 매핑 누락 incident 1건 더 발생 시 HARD 검토 (vault Decision 박제 시 §"Reference precedent 비교" 섹션 강제 schema — vault-api `/validate` 차원의 신규 검증 항목 추가 검토).
+
 ### VAULT_GATEKEEPER
 
 - `[HARD]` **옵시 외 봇은 `/home/sungw/obsidian-vault/**` write/commit 금지** (count: 1, since: 2026-05-04, promoted: 2026-05-04)
