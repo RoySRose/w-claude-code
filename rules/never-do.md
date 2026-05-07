@@ -50,6 +50,13 @@
   - **박제 incident**: 2026-04-18 KST 마스터 "무슨 모든 봇이... 1주차 2주차 나눠서 한다고 하고 자빠져있냐? 그냥 지금 다 하면 되는건데" 명시 지적. 2026-04-16 씽커→디지 Sprint 1 skill 흡수도 같은 패턴.
   - 세부: `/home/sungw/agents/PROTOCOL.md` §Single-Session Execution Principle 섹션.
 
+- `[SOFT]` **운영 비용 = 컴퓨팅 리소스 (홈서버) 환경에서 점진/임계 도입 default 금지** (count: 1, since: 2026-05-07)
+  - 2개+ 컴포넌트 동시 도입 결정 시 봇이 *SaaS 종량제* 가정 학습 그대로 들고 와서 *"임계 도달 후 분리"* / *"phase A 먼저 검증"* default 잡음 → 마스터 환경 (홈서버 + 컴퓨팅 풍족 + ratify 게이트 이미 박힘) 에서는 함정.
+  - **허용 조건 (점진 도입 정당한 경우)**: ① 실제 SaaS 종량 비용 발생 (Datadog/Snowflake/Algolia/Pinecone 류), ② 외부 dependency 대기 (벤더 contract/legal review), ③ vault canonical / ratify 게이트 같은 *enforce layer 가 store 보다 먼저 안 박혀 있는* 경우 (= OpenCrab 함정 진단 후 store 다중 도입은 위험), ④ 마스터 명시 요청.
+  - **default = 환경 invariant 먼저 확인**. (a) 운영 비용이 컴퓨팅인가 SaaS 종량인가? (b) enforce layer (게이트/ratify/canonical) 가 store 보다 먼저 박혀있는가? 둘 다 *yes* 면 동시 도입 default. *no* 면 점진 OK.
+  - **박제 incident**: 2026-05-07 KST 4-store fan-out (PG/Chroma/Neo4j/Mongo) 도입 결정. 옵시 1차 답변 = "임계 트리거 후 분리" phased rollout 권고 → 마스터 정정 (msg `1501814428046327838`): *"뭘 임계점까지가. 데이터 붙기시작하면 몇일안에도 바꿀텐데. 운영 비용이 돈이 드는것도 아니고 그냥 컴퓨팅 리소스라면 지금 충분하잖아"*. 옵시 정정 수용 → 4-store 동시 도입으로 pivot. OpenCrab 함정 재해석: store 다중화 자체 X, *enforce layer 부재* 가 진짜 함정. 우리는 옵시 게이트키퍼 + 16-gate + ratify 가 store 보다 먼저 박혀있어서 동시 깔아도 일관성 안 깨짐. 박제: [[Decisions/2026-05-07-four-store-fanout-adoption]] §Lesson.
+  - **승격 트리거**: 환경 invariant 검증 누락 incident 1건 더 발생 시 HARD 검토 (단, 환경 판정은 판단 폭 넓어서 [SOFT] 권장 — 자율성 룰과 비슷).
+
 ### PROTOCOL
 
 - `[SOFT]` **FMS multi-step task 중간 결과에 `report_to: master` 금지** (count: 1, since: 2026-04-16)
@@ -61,6 +68,13 @@
 - `[SOFT]` **FMS forward/reply 시 원본 `report_to` 임의 변경 금지** (count: 0, since: 2026-04-16)
   - 중간 봇이 목적지를 바꾸면 최초 발신자가 결과를 못 받는다.
   - 세부: 위와 동일 skill 문서.
+
+- `[SOFT]` **sub-process / subagent 는 `~/.claude/session-data/**` 를 read 하지 마라 — prompt spec 만 trust** (count: 1, since: 2026-05-07)
+  - sub-agent 는 위임자가 준 prompt 가 task scope 의 single source of truth. 외부 dump (다른 봇 세션 박제) 를 자기 task 컨텍스트로 끌어오면 cross-bot 발화 오인 → 잘못된 HOLD/판단 발생.
+  - **enforcement**: 10봇 settings.json `permissions.deny: [Read(/home/sungw/.claude/session-data/**)]` 적용 완료 (2026-05-07). main session 도 deny 적용 — `/sessions` 슬래시 커맨드는 plugin 내부 fs 사용이라 영향 X.
+  - **secondary**: `everything-claude-code/scripts/lib/utils.js` `getProjectName()` 에 `/home/sungw/agents/<bot>/` 패턴 매칭 추가 → 봇별 별개 dump 파일 (`agents-<bot>` namespace). 플러그인 업데이트 시 재적용 필요.
+  - **박제 incident**: 2026-05-07 12:57 KST 씽커 → nextjs-fastapi-fullstack subagent 위임 (Shinhan A안 MDC 1차 commit). subagent 가 작업 시작 직후 `~/.claude/session-data/2026-05-07-agents-session.tmp` (디지 worktree dump) 를 read → 디지 채널 발화 "2번은 보류" 를 자기 task 의 "A안=2번" 으로 잘못 매핑 → HOLD 판정 + 작업 중단. 마스터 직접 정정 후 재개. 60분 손실. 근본원인 = `getProjectName()` 의 git-toplevel 기반 추출이 모든 봇을 "agents" 단일 프로젝트로 묶어 dump 충돌.
+  - **승격 트리거**: Read deny rule 우회 사례 1건 더 발생 시 HARD (PreToolUse hook 으로 path 차단 강제).
 
 ### VERIFICATION
 
