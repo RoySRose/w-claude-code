@@ -27,6 +27,8 @@ projects/*/[0-9a-f]*-[0-9a-f]*-*/
 # Per-bot / per-project session state dirs (오직 -home-sungw-agents/memory/ 만 tracked)
 projects/-home-sungw-agents-*/
 projects/-home-sungw/
+# Ecosystem resident memory is local runtime state; never expose it through this public repo.
+projects/-home-sungw-ecosystem-*/memory/
 
 # Runtime counter state (rules/ 하위 auto-updated, commit 금지)
 rules/counters.json
